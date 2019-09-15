@@ -1,1 +1,3 @@
-# nested_cross_validation
+# Mannual Implementation of Nested Cross Validation
+
+![](/images/nested cross validation.png)
