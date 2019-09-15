@@ -1,3 +1,3 @@
 # Manual Implementation of Nested Cross Validation
 
-![](/images/nested_cross_validation.png)
+![](/images/nested cross validation.png)
