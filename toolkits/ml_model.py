@@ -271,7 +271,7 @@ class HyperpSpace(Enum):
     c = [0.01, 0.1, 1, 10, 100, 1000, 10000,100000, 1000000]
     
 
-class get_svm_pipeline(object):
+class SVM_pipeline(object):
     def __init__(self, kernel):
         self.kernel = kernel
     
