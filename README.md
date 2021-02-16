@@ -16,3 +16,7 @@ Biomarkers panel can be identified by the emerging technologies of aptamer-based
 
 # Summary of AUC scores 
 ![](/AUC_score_summary.png)
+
+
+# Urine protein biomarkers
+![](/biomarkers.png)
