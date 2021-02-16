@@ -291,11 +291,12 @@ class get_svm_pipeline(object):
         # pipeline
         pipeline = Pipeline([   
             feature_selection, 
+            ('std_scalar', StandardScaler()),
             ("svm", SVC(kernel='linear', verbose = 200, probability = True, decision_function_shape='ovo'))    
         ])
         
         # search space
-        search_space = [{'svm__kernel': ['rbf'], 
+        search_space = [{'svm__kernel': ['linear', 'rbf', 'poly'], 
                              'svm__C': HyperpSpace.c.value, 
                              'svm__gamma': HyperpSpace.gamma.value}]
         
