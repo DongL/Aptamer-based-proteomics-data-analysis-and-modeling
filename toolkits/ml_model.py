@@ -248,7 +248,6 @@ def get_repeated_nestedCV_score(pipeline, search_space, X, y_onehot, expID = 0, 
 
 
 # ####################################
-
 # statistical test
 def myStatTest(X, y_onehot):
     '''
@@ -263,8 +262,7 @@ def myStatTest(X, y_onehot):
     return -np.array(F), np.array(pval)    
 
 
-
-        
+# Model optimization
 class HyperpSpace(Enum):
     gamma = [0.0001, 0.001, 0.01, 0.1, 1, 10] # np.logspace(-3, 1, 5) # 1e-4,
     degree = [2, 3, 4, 5, 6] # np.arange(2,7)
@@ -304,7 +302,57 @@ class get_svm_pipeline(object):
         return pipeline, search_space
         
         
+# ROC curve
+def ROCplot(repeatedCV_scores):
+    
+    test_tpr = repeatedCV_scores['test_tpr']
+    test_fpr = repeatedCV_scores['test_fpr']
+    
+    mean_auc = repeatedCV_scores['scores']['test_auc'].mean()
+    
+       # plot diagnoal line
+    plt.plot([0, 1], [0, 1], linestyle='--', lw=2, color='r',
+             label='Chance', alpha=.8)
+    
+    # plot mean ROC curve
+    test_mean_tpr = np.mean(test_tpr, axis=0)
+    test_mean_fpr = np.mean(test_fpr, axis=0)
+    mean_fpr = np.linspace(0, 1, 100)
+    
+    plt.plot(test_mean_fpr, test_mean_tpr, color='b', #marker = '*',
+         label=r'Mean ROC (AUC = %0.2f $\pm$ %0.2f)' % (mean_auc, 0.1),
+         lw=2, alpha=.8)
+    
+    
+    # plot 95% confidence interval  
+    alpha = 0.95
+    p = ((1.0-alpha)/2.0) * 100
+    tprs_lower = np.percentile(test_tpr, p, axis = 0)
+    p = (alpha+((1.0-alpha)/2.0)) * 100
+    tprs_upper = np.percentile(test_tpr, p, axis = 0)
+    
+    print(len(tprs_lower), len(tprs_upper))
+    
+#     std_tpr = np.std(tprs, axis=0)
+#     tprs_upper = max(0.0, np.percentile(x, p))
+#     tprs_lower = np.maximum(mean_tpr - 2.262 * std_tpr/np.sqrt(len(tprs)), 0)
+    plt.fill_between(mean_fpr, tprs_lower, tprs_upper, color='grey', alpha=.2,
+                     label=r'95% confidence intervals (CI)')
+    
+
+
+    plt.xlim([-0.05, 1.05])
+    plt.ylim([-0.05, 1.05])
+    plt.xlabel('1 - Specificity')
+    plt.ylabel('Sensitivity')
+    plt.title('Receiver operating characteristic curve')
+    plt.legend(loc="lower right")
+    plt.gcf().set_size_inches(10, 8)
+    plt.savefig('ROC.pdf')
+    plt.show()
         
+        
+# Deep learning        
 class get_deep_learning_pipeline(object)        :
     def __init__(self):
         pass
