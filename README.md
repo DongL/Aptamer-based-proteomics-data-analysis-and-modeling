@@ -9,6 +9,10 @@ Eight candidate urine protein biomarkers met filtering criteria. B-cell lymphoma
 Biomarkers panel can be identified by the emerging technologies of aptamer-based proteomics and machine learning that offer the potential to increase UTI diagnostic accuracy, thereby limiting unneeded antibiotics.
 
 
+# Background
+![](/background.png)
+
+
 # Manual Implementation of Nested Cross Validation
 
 ![](/nested_cross_validation.png)
