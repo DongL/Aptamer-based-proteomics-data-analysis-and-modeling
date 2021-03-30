@@ -10,7 +10,7 @@ Biomarkers panel can be identified by the emerging technologies of aptamer-based
 
 
 # Background
-![](/background2.png)
+![](/bkgd.png)
 
 
 # Manual Implementation of Nested Cross Validation
